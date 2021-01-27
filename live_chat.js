@@ -1,5 +1,4 @@
 const request = require("request")
-const YT_API_KEY = "AIzaSyBNY3MtUe1aE2HiEiSkRtVblUQ1jWpXHaw"
 
 class YT_API {
 	constructor(KEY, yt_url) {
@@ -32,12 +31,12 @@ class YT_API {
 		}
 		this.request(url, data => {
 			if (pageToken) {
-			pageToken = data.nextPageToken
-			for (let chat of data.items) {
-				console.log(new Date(chat.snippet.publishedAt).getTime(), chat.snippet.displayMessage)
-			}
-			this.sleep(5000)
-			this.get_chat(pageToken)
+			    pageToken = data.nextPageToken
+			    for (let chat of data.items) {
+			    	console.log(new Date(chat.snippet.publishedAt).getTime(), chat.snippet.displayMessage)
+			    }
+			    this.sleep(5000)
+			    this.get_chat(pageToken)
 			}
 			else {
 				pageToken = data.nextPageToken
@@ -67,4 +66,5 @@ class YT_API {
 	}
 }
 
-let YT = new YT_API(YT_API_KEY, 'YT-URL')
+
+let YT = new YT_API(YT_API_KEY, 'YT-url')
