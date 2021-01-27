@@ -1,0 +1,19 @@
+{
+	"manifest_version": 2,
+	"name": "YT_Chat_Slider",
+	"version": "1.0",
+
+	"description": "Slide Youtube chat.",
+	"homepage_url": "https://github.com/ArksSai/YoutubeChatSlider",
+	"icons": {
+		"48": "icons/slider-48.png"
+	},
+
+	"content_scripts": [
+		{
+			"matches": ["*://*.youtube.com/*"],
+			"js": ["slider.js"]
+		}
+	]
+
+}
