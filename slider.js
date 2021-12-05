@@ -7,23 +7,31 @@ function CreateCanvas() {
 	return canvas
 }
 
-function draw(canvas, player, text) {
-    let ctx = canvas.getContext("2d")
-    ctx.lineWidth = 3
-    ctx.fillStyle = "#FFFFFF"
-    ctx.font = "48px Arial"
-	repeat_drawing()
-	function repeat_drawing() {
-		ctx.clearRect(0, 0, canvas.width, canvas.height)
-	    ctx.fillText(text, canvas.width - 100 * player.getCurrentTime(), 48)
-	    requestAnimationFrame(repeat_drawing)
-	}
-}
-
+//function draw(canvas, player, text) {
+//    let ctx = canvas.getContext("2d")
+//    ctx.lineWidth = 3
+//    ctx.fillStyle = "#FFFFFF"
+//    ctx.font = "48px Arial"
+//	repeat_drawing()
+//	function repeat_drawing() {
+//		ctx.clearRect(0, 0, canvas.width, canvas.height)
+//	    ctx.fillText(text, canvas.width - 100 * player.getCurrentTime(), 48)
+//	    requestAnimationFrame(repeat_drawing)
+//	}
+//}
 
 let player = document.getElementById("movie_player").wrappedJSObject
 let canvas = CreateCanvas()
 player.appendChild(canvas)
 //player.addEventListener("playing", draw(canvas, player, "chat_text"))
-player.addEventListener("playing", draw(canvas, player, "ABC"))
-//draw(canvas, player)
+//player.addEventListener("playing", draw(canvas, player, "ABC"))
+//draw(canvas, player, "AAA")
+
+function drawComment(canvas, player, text) {
+    let ctx = canvas.getContext("2d")
+    ctx.lineWidth = 3
+    ctx.fillStyle = "#FFFFF"
+    ctx.font = "48px Arial"
+    
+
+}

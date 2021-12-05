@@ -1,9 +1,9 @@
 const request = require("request")
 
-class YT_API {
-	constructor(KEY, yt_url) {
+class Youtube_API {
+	constructor(KEY, youtube_url) {
 		this.YT_API_KEY = KEY
-		this.video_id = yt_url.replace('https://www.youtube.com/watch?v=', '')
+		this.video_id = youtube_url.replace('https://www.youtube.com/watch?v=', '')
 		this.get_live()
 	}
 
@@ -67,4 +67,4 @@ class YT_API {
 }
 
 
-let YT = new YT_API(YT_API_KEY, 'YT-url')
+//let YT = new YT_API(YT_API_KEY, 'AIzaSyC0mXSSEImZ4HvOkenvYJDHG8U4B2y4AlY')

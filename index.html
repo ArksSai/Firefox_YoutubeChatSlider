@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="youtube_url.js"></script>
+</head>
+
+<body>
+    <div>
+        <input id="urlInput" type="text" placeholder="Paste youtube url...", value="https://www.youtube.com/watch?v=bWiS8tO6xWA">
+        <button onclick="addButton()">Add</button>
+        <div id="canvas"></div>
+    </div>
+    <hr>
+    <div id="players"></div>
+    <script>
+        // 2. This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        var player;
+        function addButton() {
+          player = new YT.Player('players', {
+            height: '600',
+            width: '800',
+            videoId: document.querySelector("#urlInput").value.split('?v=')[1],
+            playerVars: {
+              'playsinline': 1
+            },
+            events: {
+              'onReady': onPlayerReady,
+            }
+          });
+        }
+
+        // 4. The API will call this function when the video player is ready.
+        function onPlayerReady(event) {
+          const canvas = createCanvas()
+          document.getElementById("canvas").appendChild(canvas)
+          const ctx = canvas.getContext("2d")
+          ctx.lineWidth = 3
+          ctx.font = "48px Arial"
+          ctx.fillStyle = "blue"
+          ctx.textAlign = "center"
+
+          var barrage = new Barrage(ctx, 50, 50)
+          barrage.addBarrage({text: "AAAAAAAAAA"})
+
+          player.addEventListener("playing", function loop(){
+              ctx.clearRect(0, 0, canvas.width, canvas.height)
+              setTimeout(() => {barrage.addBarrage({text: "BBBBBBB"})}, 2000)
+              for (let i = barrage.data.length - 1; i >= 0; i -= 1){
+                ctx.fillText(barrage.data[i].text, canvas.width - 200 * player.playerInfo.currentTime, 50)
+              }
+              requestAnimationFrame(loop)
+          }())
+        }
+      </script>
+</body>
+</html>
