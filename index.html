@@ -2,12 +2,13 @@
 <html>
 
 <head>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="youtube_url.js"></script>
 </head>
 
 <body>
     <div>
-        <input id="urlInput" type="text" placeholder="Paste youtube url...", value="https://www.youtube.com/watch?v=bWiS8tO6xWA">
+        <input id="urlInput" type="text" placeholder="Paste youtube url...", value="https://www.youtube.com/watch?v=XenuvP7K3gs">
         <button onclick="addButton()">Add</button>
         <div id="canvas"></div>
     </div>
@@ -15,10 +16,10 @@
     <div id="players"></div>
     <script>
         // 2. This code loads the IFrame Player API code asynchronously.
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        //var tag = document.createElement('script');
+        //tag.src = "https://www.youtube.com/iframe_api";
+        //var firstScriptTag = document.getElementsByTagName('script')[0];
+        //firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
         // 3. This function creates an <iframe> (and YouTube player)
         //    after the API code downloads.
@@ -38,6 +39,7 @@
         }
 
         // 4. The API will call this function when the video player is ready.
+        var message = getYoutubeLiveChatMessage()
         function onPlayerReady(event) {
           const canvas = createCanvas()
           document.getElementById("canvas").appendChild(canvas)
@@ -48,13 +50,14 @@
           ctx.textAlign = "center"
 
           var barrage = new Barrage(ctx, 50, 50)
-          barrage.addBarrage({text: "AAAAAAAAAA"})
 
           player.addEventListener("playing", function loop(){
               ctx.clearRect(0, 0, canvas.width, canvas.height)
-              setTimeout(() => {barrage.addBarrage({text: "BBBBBBB"})}, 2000)
+              setTimeout(() => {barrage.addBarrage({text: message})}, 2000)
+              //setTimeout(() => {barrage.addBarrage({text: "AAAAAAAAAAAAAAA"})}, 2000)
               for (let i = barrage.data.length - 1; i >= 0; i -= 1){
-                ctx.fillText(barrage.data[i].text, canvas.width - 200 * player.playerInfo.currentTime, 50)
+                //ctx.fillText(barrage.data[i].text, canvas.width - 100 * player.playerInfo.currentTime, 50)
+                ctx.fillText(barrage.data[i].text, canvas.width - 500, 50)
               }
               requestAnimationFrame(loop)
           }())

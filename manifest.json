@@ -12,7 +12,7 @@
 	"content_scripts": [
 		{
 			"matches": ["*://*.youtube.com/*"],
-			"js": ["slider.js"]
+			"js": ["slider.js", "live_chat.js"]
 		}
 	]
 

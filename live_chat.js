@@ -25,7 +25,7 @@ class Youtube_API {
 		    `key=${this.YT_API_KEY}` +
 		    `&liveChatId=${this.chat_id}` +
 		    '&part=snippet' +
-			'&maxResult=100'
+			'&maxResult=2000'
 		if (pageToken) {
 			url = url + `&pageToken=${pageToken}`
 		}
@@ -66,5 +66,3 @@ class Youtube_API {
 	}
 }
 
-
-//let YT = new YT_API(YT_API_KEY, 'AIzaSyC0mXSSEImZ4HvOkenvYJDHG8U4B2y4AlY')
